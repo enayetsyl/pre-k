@@ -20,7 +20,7 @@ const CORRECT_PHRASES = ["Radical!", "Awesome!", "Super!"]
 const TOO_HIGH_PHRASE = "That's too many!"
 const TOO_LOW_PHRASE = "That's too small!"
 
-const ANIMATION_DURATION = 4 // seconds
+const ANIMATION_DURATION = 1 // seconds
 
 export default function CountingFishGame() {
   const [gameState, setGameState] = useState("start")
