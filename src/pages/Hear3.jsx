@@ -102,7 +102,7 @@ export default function Hear3() {
     return (
       <div className="flex flex-col items-center justify-center min-h-screen bg-blue-400 text-white">
         <h1 className="text-4xl font-bold mb-4">Congratulations!</h1>
-        <p className="text-xl mb-2">You've completed the quiz.</p>
+        <p className="text-xl mb-2">You have completed the quiz.</p>
         <p className="text-lg mb-2">Time spent: {Math.floor(timeElapsed / 60)}min {timeElapsed % 60}sec</p>
         <p className="text-lg mb-2">Score: {score}</p>
         <p className="text-lg mb-4">Questions correct: {correctAnswers} / {totalQuestionsAttempted}</p>

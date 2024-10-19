@@ -4,6 +4,7 @@ import CountingFishGame from "../pages/games";
 import MainLayout from "../layout/MainLayout";
 import Identify3 from "../pages/Identify3";
 import Hear3 from "../pages/Hear3";
+import Learn3 from "../pages/learn3";
 
 export const router = createBrowserRouter([
  {
@@ -26,6 +27,10 @@ export const router = createBrowserRouter([
       path: "/hear3",
       element: <Hear3 />,
     },
+    {
+      path: "/learn3",
+      element: <Learn3 />,
+    }
   ]
 }
   

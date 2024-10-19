@@ -19,6 +19,16 @@ const Lessons = () => {
           </Link>
         </li>
       </ul>
+      <h3 className="font-bold">B. Counting to 3</h3>
+      <ul className="list-none pl-0">
+        <li className="flex items-center">
+          <span className="text-gray-400 mr-2">★</span>
+          <Link to="/learn3" className="hover:underline">
+            1 Learn to count - up to 3
+          </Link>
+        </li>
+      </ul>
+       
     </div>
   );
 };
