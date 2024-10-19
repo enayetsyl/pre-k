@@ -27,6 +27,12 @@ const Lessons = () => {
             1 Learn to count - up to 3
           </Link>
         </li>
+        <li className="flex items-center">
+          <span className="text-gray-400 mr-2">★</span>
+          <Link to="/count3" className="hover:underline">
+            3 Count dots - up to 3
+          </Link>
+        </li>
       </ul>
        
     </div>

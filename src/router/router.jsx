@@ -5,6 +5,7 @@ import MainLayout from "../layout/MainLayout";
 import Identify3 from "../pages/Identify3";
 import Hear3 from "../pages/Hear3";
 import Learn3 from "../pages/learn3";
+import Count3 from "../pages/count3";
 
 export const router = createBrowserRouter([
  {
@@ -30,6 +31,10 @@ export const router = createBrowserRouter([
     {
       path: "/learn3",
       element: <Learn3 />,
+    },
+    {
+      path: "/count3",
+      element: <Count3 />,
     }
   ]
 }

@@ -1,24 +1,20 @@
 import { useState, useEffect } from 'react';
-import birdImage from '../assets/bird.jpg'
-import hippoImage from '../assets/hippo.jpg'
-import lionImage from '../assets/lion.jpeg'
-
 
 const questions = [
-  { id: 1, animal: 'bird', count: 2, image: birdImage },
-  { id: 2, animal: 'hippo', count: 3, image: hippoImage },
-  { id: 3, animal: 'lion', count: 1, image: lionImage },
-  { id: 4, animal: 'bird', count: 1, image: birdImage },
-  { id: 5, animal: 'lion', count: 2, image: lionImage },
-  { id: 6, animal: 'hippo', count: 1, image: hippoImage },
-  { id: 7, animal: 'bird', count: 3, image: birdImage },
-  { id: 8, animal: 'lion', count: 3, image: lionImage },
-  { id: 9, animal: 'hippo', count: 2, image: hippoImage },
+  { id: 1, color: 'pink', count: 2 },
+  { id: 2, color: 'blue', count: 3 },
+  { id: 3, color: 'green', count: 1 },
+  { id: 4, color: 'red', count: 1 },
+  { id: 5, color: 'yellow', count: 2 },
+  { id: 6, color: 'purple', count: 1 },
+  { id: 7, color: 'orange', count: 3 },
+  { id: 8, color: 'violet', count: 3 },
+  { id: 9, color: 'cyan', count: 2 },
 ];
 
 const encouragements = ["Super!", "Excellent!", "Awesome!"];
 
-export default function Learn3() {
+const Count3 = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
   const [timeElapsed, setTimeElapsed] = useState(0);
@@ -38,7 +34,7 @@ export default function Learn3() {
     return () => clearInterval(timer);
   }, [isCompleted]);
 
-  const handleImageClick = (index) => {
+  const handleCircleClick = (index) => {
     if (!clickedOrder.includes(index)) {
       setClickedOrder([...clickedOrder, index]);
     }
@@ -87,7 +83,7 @@ export default function Learn3() {
     return (
       <div className="flex flex-col items-center justify-center min-h-screen bg-blue-400 text-white">
         <h1 className="text-4xl font-bold mb-4">Congratulations!</h1>
-        <p className="text-xl mb-2">Your final score: {score}</p>
+        <p className="text-xl mb-2 text-">Your final score: {score}</p>
         <p className="text-lg mb-2">Time elapsed: {Math.floor(timeElapsed / 60)}:{timeElapsed % 60}</p>
         <p className="text-lg mb-2">Questions correct: {correctAnswers} / {totalQuestionsAttempted}</p>
       </div>
@@ -96,17 +92,17 @@ export default function Learn3() {
 
   return (
     <div className="flex flex-col items-center min-h-screen bg-blue-100 p-4">
-      <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md">
+      <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md ">
         <div className="question-section mb-4">
-          <h2 className="text-2xl font-bold mb-4">Count the {questions[currentQuestion].animal}s</h2>
+          <h2 className="text-2xl font-bold mb-4">Count the {questions[currentQuestion].color} circles</h2>
           <div className="grid grid-cols-3 gap-4 mb-4">
             {[...Array(questions[currentQuestion].count)].map((_, index) => (
               <div
                 key={index}
-                className="relative animal-image border-2 border-gray-300 rounded-lg p-2 cursor-pointer hover:border-blue-500"
-                onClick={() => handleImageClick(index)}
+                className={`relative circle border-2 border-gray-300  rounded-full h-32 w-32 cursor-pointer hover:border-blue-500 `}
+                onClick={() => handleCircleClick(index)}
+                style={{ backgroundColor: questions[currentQuestion].color }}
               >
-                <img src={questions[currentQuestion].image} alt={questions[currentQuestion].animal} className="w-full h-auto rounded-md" />
                 {clickedOrder.includes(index) && (
                   <span className="absolute top-2 left-2 bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center">
                     {clickedOrder.indexOf(index) + 1}
@@ -116,8 +112,8 @@ export default function Learn3() {
             ))}
           </div>
         </div>
-        <div className="answer-section mb-4 text-">
-          <p className="text-lg mb-2">How many {questions[currentQuestion].animal}s are there?</p>
+        <div className="answer-section mb-4">
+          <p className="text-lg mb-2">How many {questions[currentQuestion].color} circles are there?</p>
           <div className="flex space-x-4">
             {[1, 2, 3].map((option) => (
               <button
@@ -137,59 +133,59 @@ export default function Learn3() {
           <div className="explanation-section mt-4 p-4 bg-red-100 rounded-lg">
             <p className="text-lg font-bold text-red-600 mb-4">Sorry, incorrect...</p>
             <div className="question-section mb-4">
-              <h2 className="text-2xl font-bold mb-4">Count the {questions[currentQuestion].animal}s</h2>
+              <h2 className="text-2xl font-bold mb-4">Question:</h2>
+              <p className="text-lg mb-2">How many {questions[currentQuestion].color} circles are there?</p>
               <div className="grid grid-cols-3 gap-4 mb-4">
                 {[...Array(questions[currentQuestion].count)].map((_, index) => (
                   <div
                     key={index}
-                    className="relative animal-image border-2 border-gray-300 rounded-lg p-2"
+                    className="relative circle border-2 border-gray-300 rounded-full h-32 w-32 "
+                    style={{ backgroundColor: questions[currentQuestion].color }}
                   >
-                    <img src={questions[currentQuestion].image} alt={questions[currentQuestion].animal} className="w-full h-auto rounded-md" />
                   </div>
                 ))}
               </div>
-            </div>
-            <div className="answer-section mb-4">
-              <p className="text-lg mb-2">How many {questions[currentQuestion].animal}s are there?</p>
-              <div className="flex space-x-4">
+              <p className="text-lg mb-2">Options:</p>
+              <div className="flex space-x-4 mb-4">
                 {[1, 2, 3].map((option) => (
                   <button
                     key={option}
-                    className={`py-2 px-4 rounded-lg font-bold bg-gray-200`}
+                    className="py-2 px-4 rounded-lg font-bold bg-gray-200"
                   >
                     {option}
                   </button>
                 ))}
               </div>
-            </div>
-            <p className="text-lg mb-2 font-bold">Your answer:</p>
-            <div className="flex space-x-4 mb-4">
-              {[1, 2, 3].map((option, index) => (
-                <button
-                  key={index}
-                  className={`py-2 px-4 rounded-lg font-bold ${selectedAnswer === option ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
-                >
-                  {option}
-                </button>
-              ))}
-            </div>
-            <div className="question-section mb-4">
-              <h2 className="text-2xl font-bold mb-4">Count the {questions[currentQuestion].animal}s again</h2>
-              <div className="grid grid-cols-3 gap-4 mb-4">
-                {[...Array(questions[currentQuestion].count)].map((_, index) => (
-                  <div
-                    key={index}
-                    className={`relative animal-image border-2 rounded-lg p-2 ${index === 0 ? 'border-yellow-500' : 'border-gray-300'}`}
+              <p className="text-lg mb-2">You answered:</p>
+              <div className="flex space-x-4 mb-4">
+                {[1, 2, 3].map((option) => (
+                  <button
+                    key={option}
+                    className={`py-2 px-4 rounded-lg font-bold ${selectedAnswer === option ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
                   >
-                    <img src={questions[currentQuestion].image} alt={questions[currentQuestion].animal} className="w-full h-auto rounded-md" />
-                  </div>
+                    {option}
+                  </button>
                 ))}
               </div>
+              <div className="question-section mb-4">
+                <h2 className="text-2xl font-bold mb-4">Count the dots:</h2>
+                <div className="grid grid-cols-3 gap-4 mb-4">
+                  {[...Array(questions[currentQuestion].count)].map((_, index) => (
+                    <div
+                      key={index}
+                      className={`relative circle border-2 rounded-full p-2 border-gray-300 h-32 w-32  `}
+                      style={{ backgroundColor: questions[currentQuestion].color }}
+                    >
+                      <span className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2   font-bold text-white text-4xl">{index + 1}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="text-lg font-bold text-yellow-600 mb-4">There {questions[currentQuestion].count === 1 ? 'is' : 'are'} {questions[currentQuestion].count} {questions[currentQuestion].color} {questions[currentQuestion].count === 1 ? 'dot' : 'dots'}.</div>
+              <button onClick={handleNextQuestion} className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg">
+                Got it
+              </button>
             </div>
-            <div className="text-lg font-bold text-yellow-600 mb-4">There are {questions[currentQuestion].count} {questions[currentQuestion].animal}s.</div>
-            <button onClick={handleNextQuestion} className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg">
-              Got it
-            </button>
           </div>
         )}
       </div>
@@ -207,4 +203,4 @@ export default function Learn3() {
 }
 
 
-
+export default Count3
